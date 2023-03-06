@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "440020877775",
+    "project_id": "thuctap-c9c43",
+    "storage_bucket": "thuctap-c9c43.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:440020877775:android:e24d7e12d421b72c3cd2ba",
+        "android_client_info": {
+          "package_name": "com.example.thuctap"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "440020877775-p0qktmjou74ou5hj83oftecuktvh21lf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.thuctap",
+            "certificate_hash": "65dbb9c31ee983b31eab67254e18acaab56b0d04"
+          }
+        },
+        {
+          "client_id": "440020877775-80ovctaq1caeabi9m2uevn19npio9vpr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYaKRwrrGuN_2Rs9zLYDOpNMGx4yU8aQk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "440020877775-80ovctaq1caeabi9m2uevn19npio9vpr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
