@@ -1,4 +1,4 @@
-package com.example.thuctap.Profile
+package com.example.thuctap.compose.Profile
 
 import android.widget.Toast
 import androidx.compose.foundation.layout.*

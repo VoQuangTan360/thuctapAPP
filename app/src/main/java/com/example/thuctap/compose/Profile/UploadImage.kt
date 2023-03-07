@@ -319,10 +319,10 @@ fun onUpload(filePath: Uri, context: Context, certificatesViewModel: Certificate
         }
     }).dispatch()
 }
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    ThucTapTheme {
-        UloadImage(onCheck={}, checkUpdate = false)
-    }
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun DefaultPreview() {
+//    ThucTapTheme {
+//        UloadImage(onCheck={}, checkUpdate = false)
+//    }
+//}

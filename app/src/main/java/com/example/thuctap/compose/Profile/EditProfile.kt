@@ -37,7 +37,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
-import com.example.thuctap.Profile.DatePickerUI
+import com.example.thuctap.compose.Profile.DatePickerUI
 import com.example.thuctap.ui.theme.*
 
 @OptIn(ExperimentalComposeUiApi::class)
@@ -54,6 +54,7 @@ fun EditProfile() {
         .verticalScroll(rememberScrollState())
 
     ) {
+        Spacer(Modifier.height(10.dp))
         Row(
             Modifier.fillMaxWidth().fillMaxHeight(0.1f),
             horizontalArrangement = Arrangement.SpaceBetween,
@@ -98,7 +99,7 @@ fun EditProfile() {
                 Row(Modifier.width(120.dp).height(110.dp),
                     verticalAlignment = Alignment.Bottom,
                     horizontalArrangement=Arrangement.End){
-                    Image(painter =painterResource(id = R.drawable.ic_map), contentDescription = "",
+                    Image(painter =painterResource(id = R.drawable.ic_image_add), contentDescription = "",
                         modifier = Modifier.size(25.dp)
 
                     )
@@ -111,7 +112,7 @@ fun EditProfile() {
            UloadImage(onCheck = {checkUpdate.value=it},checkUpdate= checkUpdate.value)
             Text(text = "Add description",  fontWeight = FontWeight.Bold )
             TextField(value = username, onValueChange = {username = it
-            },
+             },
                 modifier = Modifier
                     .fillMaxWidth().height(120.dp)
                     .border(width=1.dp, brush = Brush.horizontalGradient(listOf(blackBTN, blackBTN)) ,shape = RoundedCornerShape(10.dp))
@@ -227,10 +228,14 @@ fun EditProfile() {
                 Button(onClick = {
                     checkUpdate.value=true
 
-                },Modifier.fillMaxWidth()
-                    .height(40.dp)
+                },
+                Modifier.fillMaxWidth()
                     .clip(RoundedCornerShape(15.dp,15.dp,15.dp,15.dp))
-                    .background(hongcanhsen),
+                    .height(40.dp)
+
+                    ,
+                    colors = ButtonDefaults.buttonColors(hongcanhsen)
+
 
 
                 ){
@@ -238,7 +243,7 @@ fun EditProfile() {
                 }
 
             }
-            Spacer(Modifier.height(25.dp))
+            Spacer(Modifier.height(70.dp))
         }
 
     }
