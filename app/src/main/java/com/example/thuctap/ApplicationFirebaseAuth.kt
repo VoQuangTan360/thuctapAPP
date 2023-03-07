@@ -3,11 +3,10 @@ package com.example.thuctap
 import android.app.Application
 import com.cloudinary.android.MediaManager
 import com.example.thuctap.common.DataLocal
-
 import dagger.hilt.android.HiltAndroidApp
 
-//@HiltAndroidApp
-//class CustomApplication : Application(){
+@HiltAndroidApp
+class ApplicationFirebaseAuth:Application() {
 //    override fun onCreate() {
 //        super.onCreate()
 //        val config = HashMap<Any?, Any?>()
@@ -17,4 +16,4 @@ import dagger.hilt.android.HiltAndroidApp
 ////        config.put("secure", true);
 //        MediaManager.init(this, config)
 //    }
-//}
+}

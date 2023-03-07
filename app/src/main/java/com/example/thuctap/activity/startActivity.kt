@@ -1,4 +1,4 @@
-package com.example.thuctap
+package com.example.thuctap.activity
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -10,14 +10,10 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.firebaseauthyt.navigation.Navigation
-import com.example.thuctap.compose.Login.RegisterActivity
-import com.example.thuctap.compose.Login.SigInScreen
 import com.example.thuctap.ui.theme.ThucTapTheme
-import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
-class MainActivity : ComponentActivity() {
+
+class startActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -27,26 +23,19 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-//                    EditProfile()
-//                    CertificateImageUpload(onCheck={})
-//                    UloadImage(onCheck={})
-//                    RegisterActivity()
-                    Navigation()
+
                 }
             }
         }
     }
 }
 
-@Composable
-fun Greeting(name: String) {
 
-}
 
 //@Preview(showBackground = true)
 //@Composable
-//fun DefaultPreview() {
+//fun DefaultPreview2() {
 //    ThucTapTheme {
-//        Greeting("Android")
+//        Greeting2("Android")
 //    }
 //}

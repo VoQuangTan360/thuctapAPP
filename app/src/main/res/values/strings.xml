@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ThucTap</string>
+    <string name="title_activity_start">startActivity</string>
 </resources>

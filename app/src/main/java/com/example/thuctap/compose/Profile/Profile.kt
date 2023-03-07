@@ -2,6 +2,7 @@ package com.example.thuctap
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Text
@@ -18,20 +19,26 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.example.thuctap.ui.theme.ThucTapTheme
 import coil.compose.rememberAsyncImagePainter
+import com.example.thuctap.ui.theme.hongcanhsen
+import com.example.thuctap.ui.theme.line_Gray
 
 
 @Composable
-fun Profile() {
-    Column(Modifier.fillMaxSize(),
+fun Profile(navHostController: NavHostController) {
+    Column(Modifier.fillMaxSize().padding(horizontal = 1.dp),
     verticalArrangement = Arrangement.Top,
     horizontalAlignment = Alignment.CenterHorizontally){
-        Row(Modifier.fillMaxWidth().fillMaxHeight(0.1f),
+        Spacer(Modifier.height(10.dp))
+        Row(Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
             ){
-            Row(Modifier.fillMaxWidth(0.25f)
-                .fillMaxHeight(),
+            Row(Modifier.fillMaxWidth(0.30f)
+                ,
                 horizontalArrangement = Arrangement.SpaceAround,
                 verticalAlignment = Alignment.CenterVertically){
                     Column(Modifier) {
@@ -42,9 +49,9 @@ fun Profile() {
                         )
 
                     }
-                    Text(text ="Profile", fontWeight = FontWeight.Bold, fontSize = 20.sp )
+                    Text(text ="Profile", fontWeight = FontWeight.Bold, fontSize = 22.sp )
             }
-            Row(Modifier.fillMaxWidth(0.50f).fillMaxHeight(),
+            Row(Modifier.fillMaxWidth(0.50f),
                 horizontalArrangement = Arrangement.SpaceAround,
                 verticalAlignment = Alignment.CenterVertically
             ){
@@ -65,54 +72,73 @@ fun Profile() {
                 )
             }
         }
+        Spacer(Modifier.height(35.dp))
         Row(Modifier.fillMaxHeight(0.2f).fillMaxWidth().padding(start = 20.dp),
             horizontalArrangement = Arrangement.Start,
             verticalAlignment = Alignment.CenterVertically){
             Image(painter = rememberAsyncImagePainter("https://tse2.mm.bing.net/th?id=OIP.XgK18C8qMMhf9KZwMWX-twHaE7&pid=Api&P=0")
                 , contentDescription = "",
-                modifier = Modifier.size(80.dp).clip(CircleShape),contentScale = ContentScale.FillBounds
+                contentScale = ContentScale.Crop,
+                modifier = Modifier.size(70.dp).clip(CircleShape)
             )
             Column(Modifier.padding(start = 20.dp)){
-                Text(text = "Vo Quang Tan", color = Color.Red, fontSize = 20.sp)
-                Text(text = "sdfsdfsdfsdfsdf")
+                Text(text = "fun E", color = hongcanhsen, fontWeight = FontWeight(400) ,fontSize = 20.sp)
+                Spacer(Modifier.height(5.dp))
+                Text(text = "voquanhtan360.@gmail.com")
             }
         }
-        Column (Modifier.fillMaxWidth().padding(start = 20.dp),
+        Spacer(Modifier.height(15.dp))
+        Column (Modifier.fillMaxWidth().padding(start = 10.dp),
             horizontalAlignment = Alignment.Start
         ){
             Text(text = "Contact Details", fontSize = 16.sp)
         }
-        TapProfile("Edit Profile",R.drawable.ic_profile_male)
-        TapProfile("Email address",R.drawable.ic_gmail)
-        TapProfile("Phone number",R.drawable.ic_phone)
-        TapProfile("Residenttial addresses",R.drawable.ic_map)
-        TapProfile("Sign out",R.drawable.ic_sign_out)
-        Spacer(Modifier.height(1.dp).fillMaxWidth().background(Color.Gray))
+        Spacer(Modifier.height(5.dp))
+        TapProfile("Edit Profile",R.drawable.ic_profile_male,navHostController)
+        TapProfile("Email address",R.drawable.ic_gmail,navHostController)
+        TapProfile("Phone number",R.drawable.ic_phone,navHostController)
+        TapProfile("Residenttial addresses",R.drawable.ic_map,navHostController)
+        TapProfile("Sign In",R.drawable.ic_sign_out,navHostController)
+        Spacer(Modifier.height(1.dp).fillMaxWidth().background(line_Gray))
     }
 }
 @Composable
-fun TapProfile (text:String,idIcon:Int){
-    Column(Modifier.fillMaxWidth()){
-        Spacer(Modifier.height(1.dp).fillMaxWidth().background(Color.Gray))
-        Row(Modifier.fillMaxWidth().padding(horizontal = 20.dp, vertical = 15.dp)){
+fun TapProfile (text:String,idIcon:Int,navHostController: NavHostController){
+    Column(Modifier.fillMaxWidth().clickable {
+        when (text){
+            "Edit Profile"->{
+                navHostController.navigate("account/editAccount")
+            }
+            "Sign In"->{
+                navHostController.navigate("account/Signin")
+            }
+        }
+    }){
+        Spacer(Modifier.height(1.dp).fillMaxWidth().background(line_Gray))
+        Spacer(Modifier.height(5.dp))
+        Row(Modifier.fillMaxWidth().padding(horizontal = 20.dp, vertical = 15.dp),
+            verticalAlignment = Alignment.CenterVertically){
             Image(painter = painterResource(id = idIcon)
                 ,contentDescription = ""
                 ,modifier = Modifier.height(25.dp).width(25.dp)
 
             )
-            Spacer(Modifier.width(10.dp))
-            Text(text=text)
+            Spacer(Modifier.width(15.dp))
+            Text(text=text, fontSize = 17.sp, fontWeight = FontWeight(400))
             Row(Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.End
+                horizontalArrangement = Arrangement.End,
+                verticalAlignment = Alignment.CenterVertically
                 ){
                 Image(painter = painterResource(id = R.drawable.ic_next)
                     ,contentDescription = ""
-                    ,modifier = Modifier.height(15.dp).width(15.dp)
+                    ,modifier = Modifier.height(10.dp).width(10.dp)
 
                 )
             }
+            Spacer(Modifier.width(5.dp))
 
         }
+        Spacer(Modifier.height(5.dp))
 
     }
 }
@@ -120,6 +146,7 @@ fun TapProfile (text:String,idIcon:Int){
 //@Composable
 //fun DefaultPreview() {
 //    ThucTapTheme {
-//        Profile()
+//        val navController = rememberNavController()
+//        Profile(navController)
 //    }
 //}
