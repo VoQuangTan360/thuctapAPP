@@ -27,12 +27,15 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.thuctap.ui.theme.Blue300
 import com.example.thuctap.ui.theme.SecondaryColor
 import com.example.thuctap.ui.theme.ThucTapTheme
+import com.example.thuctap.ui.theme.white
 import com.example.thuctap.view_model.SignUpViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -187,7 +190,7 @@ fun view(
                     val gmailerror= valiGmail(emailValue.value)
 
                     scope.launch {
-                        registerViewModel.RegisterUser("tan123123@gmail.com","123123123")
+                        registerViewModel.RegisterUser(emailValue.value, passwordValue.value)
                     }
 
 
@@ -239,17 +242,105 @@ fun view(
         }
 
     }
+    var checkSigIn by remember{ mutableStateOf(false) }
+    if (checkSigIn){
+        AlertDialogStatus()
+    }
     LaunchedEffect(key1 = state.value?.isSuccess){
         scope.launch {
             if(state.value?.isSuccess?.isNotEmpty()==true){
                 val success=state.value?.isSuccess
+                checkSigIn=true
                 Toast.makeText(context,"${success}",Toast.LENGTH_SHORT).show()
             }
         }
     }
 
 }
+@Composable
+fun AlertDialogStatus(){
+    /**open the Dialog box*/
+    val openDialog = remember{ mutableStateOf(true) }
 
+
+    /**set Dialog */
+    if (openDialog.value){
+        AlertDialog(modifier = Modifier.fillMaxWidth()
+            .padding(15.dp)
+            ,
+            onDismissRequest = { openDialog.value = true },
+            title = {
+                Row (
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(15.dp)
+                        .background(color = Color.White, shape = RoundedCornerShape(25.dp)),
+                    Arrangement.Center
+                ){
+                    Text(
+                        text = "thông báo",
+                        style = TextStyle(
+                            fontWeight = FontWeight.Bold,
+                            textAlign = TextAlign.Center
+                        ),
+                        modifier = Modifier.align(Alignment.CenterVertically)
+                    )
+                }
+            },
+            text = {
+                Row (
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(15.dp)
+                        .background(color = Color.White, shape = RoundedCornerShape(25.dp)),
+                    Arrangement.Center
+                ){
+                    Text(
+                        text = "thành công",
+                        style = TextStyle(
+                            textAlign = TextAlign.Center
+                        ),
+                        modifier = Modifier.align(Alignment.CenterVertically)
+                    )
+                }
+            },
+            confirmButton = {
+                Row(Modifier
+                    .fillMaxWidth(),
+                    Arrangement.Center)
+                {
+                    TextButton(modifier = Modifier
+                        .padding(
+                            start = 5.dp,
+                            end = 5.dp,
+                            top = 5.dp,
+                            bottom = 5.dp
+                        )
+                        .fillMaxWidth(0.8f)
+                        .background(
+                            color = Blue300,
+                            shape = RoundedCornerShape(10.dp)
+                        )
+                        ,onClick = {
+                            openDialog.value = false
+                        }
+                    ) {
+                        Text(text = "OK",
+                            color = Color.White
+                        )
+                    }
+                }
+
+            },
+
+            backgroundColor = white,
+            contentColor = Blue300,
+            shape = RoundedCornerShape(25.dp)
+
+        )
+    }
+
+}
 private fun valiPassword(pass: String): String? {
     if(pass.length < 8){
         return "Minimum 8 character"

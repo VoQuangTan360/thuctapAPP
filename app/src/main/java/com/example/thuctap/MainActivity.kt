@@ -14,6 +14,7 @@ import com.example.firebaseauthyt.navigation.Navigation
 import com.example.thuctap.compose.Login.RegisterActivity
 import com.example.thuctap.compose.Login.SigInScreen
 import com.example.thuctap.ui.theme.ThucTapTheme
+import com.google.firebase.database.FirebaseDatabase
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -31,6 +32,8 @@ class MainActivity : ComponentActivity() {
 //                    CertificateImageUpload(onCheck={})
 //                    UloadImage(onCheck={})
 //                    RegisterActivity()
+                    val firebaseDatabase = FirebaseDatabase.getInstance();
+                    val databaseReference = firebaseDatabase.getReference("EmployeeInfo");
                     Navigation()
                 }
             }

@@ -1,4 +1,4 @@
-package com.example.thuctap.navigation
+package com.example.thuctap.compose.navigation
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle

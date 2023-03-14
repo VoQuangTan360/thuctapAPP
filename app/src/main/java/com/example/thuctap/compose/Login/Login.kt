@@ -232,13 +232,18 @@ fun login(
           onchanecheckStatus:(Boolean)-> Unit,
           LoginViewModel: SiginViewModel = hiltViewModel()
         ){
-
+    var checkSigIn by remember{ mutableStateOf(false) }
     val state= LoginViewModel.signInState.collectAsState(initial = null)
     var checkloading by rememberSaveable() {
         mutableStateOf<Boolean>(false)
     }
     val context = LocalContext.current
     val scope = CoroutineScope( Job() + Dispatchers.IO)
+
+    if (checkSigIn){
+        AlertDialogStatus()
+    }
+
     if(checkloading){
 //        CircularIndeterminateProgressBar(isDisplayed = true, verticalBias = 0.3f)
     }
@@ -246,7 +251,8 @@ fun login(
         checkloading= true
 
         scope.launch {
-            LoginViewModel.loginUser("tan123@gmail.com","123123")
+            LoginViewModel.loginUser(username.trim(),password.trim())
+//            LoginViewModel.loginUser("thoa123@gmail.com","123123")
 
         }
     },
@@ -260,7 +266,8 @@ fun login(
         scope.launch {
             if(state.value?.isSuccess?.isNotEmpty()==true){
                 val success=state.value?.isSuccess
-                Log.d(TAG,"thanhcong danh nhap ${success}")
+                checkSigIn=true
+                Log.d(TAG,"thanh cong danh nhap: ${success}")
 //                Toast.makeText(context,"${success}", Toast.LENGTH_SHORT).show()
             }
         }

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:name=".ApplicationFirebaseAuth"
@@ -17,7 +18,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".startActivity"
+            android:name=".activity.startActivity"
             android:exported="false"
             android:label="@string/title_activity_start"
             android:theme="@style/Theme.ThucTap">

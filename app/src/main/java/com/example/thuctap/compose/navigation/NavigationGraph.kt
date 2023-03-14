@@ -14,7 +14,7 @@ import com.example.thuctap.Profile
 import com.example.thuctap.TapProfile
 import com.example.thuctap.compose.Login.SigInScreen
 import com.example.thuctap.compose.Login.view
-import com.example.thuctap.navigation.NavigationItem
+import com.example.thuctap.compose.navigation.NavigationItem
 
 
 @Composable
